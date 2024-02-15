@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Github Issue Manager
 
-## Getting Started
+**Description:**
+This personal project leverages Next.js to create a feature-rich issue manager for GitHub repositories. The goal is to enhance project management by providing a structured approach to handling issues. The application allows users to create issues, and a JSON tree is dynamically generated to visualize relationships between various issues. This feature proves especially useful in managing complex projects where issues may form large and interconnected clusters.
 
-First, run the development server:
+**Key Features:**
+- Create and manage GitHub issues within a Next.js environment.
+- Generate a JSON tree for visualizing relationships among issues.
+- Improve project management by organizing and tracking related issues.
+- Utilizes Redux store for state management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**Tech Stack:**
+- Next.js
+- Redux
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**How to Run:**
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the application with `npm run dev`.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Usage:**
+1. Navigate to the application in your web browser.
+2. Create new issues and observe the dynamic JSON tree.
+3. Streamline project management by visualizing and tracking interconnected issues.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Feel free to explore and contribute to enhance this GitHub Issue Manager! For any questions or collaboration opportunities, reach out to me via [email](mailto:your-email@example.com).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy coding! 🚀
