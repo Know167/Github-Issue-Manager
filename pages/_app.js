@@ -9,10 +9,10 @@ import Navigation from "@/Components/Navigation";
 export default function App({ Component, pageProps }) {
     useEffect(() => {
 
-        localStorage.setItem("client_id", "41b15081d743c8755362");
+        localStorage.setItem("client_id", "#your-client-id");
         localStorage.setItem(
             "client_secret",
-            "f973539cbc60322c478b8cede34ecec6670d89fe"
+            "#your-client-secret"
         );
         localStorage.setItem("redirect_uri", "http://localhost:3000/home");
        
