@@ -9,11 +9,8 @@ import Navigation from "@/Components/Navigation";
 export default function App({ Component, pageProps }) {
     useEffect(() => {
 
-        localStorage.setItem("client_id", "#your-client-id");
-        localStorage.setItem(
-            "client_secret",
-            "#your-client-secret"
-        );
+        localStorage.setItem("client_id", process.env.GITHUB_ID);
+        localStorage.setItem("client_secret", process.env.GITHUB_SECRET);
         localStorage.setItem("redirect_uri", "http://localhost:3000/home");
        
     });
