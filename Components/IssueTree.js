@@ -36,7 +36,7 @@ const IssueTree = (props) => {
             setTree(resData.resData);
             setSha(resData.sha);
 
-            console.log(resData);
+       
         };
         try {
             IssueFetcher();
@@ -65,7 +65,7 @@ const IssueTree = (props) => {
         setTree((prev) => {
             let temp = prev.child;
             temp = temp.filter((i) => {
-                console.log(i.id, id);
+                
                 return +i.id !== +id;
             });
             // prev.child.slice();

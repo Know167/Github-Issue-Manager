@@ -2,7 +2,6 @@ import { Octokit } from "octokit";
 
 const handler = async (req, res) => {
     const access_token = req.body.token;
-    console.log("accesstoken:" + access_token);
 
     const octokit = new Octokit({
         auth: access_token,

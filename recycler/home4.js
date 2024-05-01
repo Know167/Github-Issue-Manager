@@ -63,7 +63,6 @@ const Home = () => {
                     });
 
                     const resData = await response.json();
-                    console.log('reponse of trying to get access token:'+resData);
                     setToken(resData.access_token);
                     authCtx.tokenHandler(resData.access_token);
                 }
@@ -73,7 +72,6 @@ const Home = () => {
                 if (hasCode) {
                     const temp = url.split("?code=");
                     const winCode = temp[1];
-                    console.log("git code in window:"+winCode);
                     authCtx.loginHandler(winCode);
                     setCode(winCode);
                     localStorage.setItem("code", winCode);

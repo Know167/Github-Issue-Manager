@@ -20,7 +20,6 @@ const AddRepo = () => {
                 desc: descRef.current.value || "",
                 privacy: privRef.current.checked,
             };
-            // console.log('authctx-add-repo: '+authCtx);
             fetcher("api/add-repo", session.accessToken, reqBody);
             alert('repository created')
             router.push("/repos");

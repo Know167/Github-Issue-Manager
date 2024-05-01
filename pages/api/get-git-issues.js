@@ -20,7 +20,6 @@ const handler = async (req, res) => {
             Buffer.from(content, "base64").toString("ascii")
         );
 
-        // console.log("resData", resData);
         return res.json({ resData, sha });
     } catch (err) {
         console.log(err);

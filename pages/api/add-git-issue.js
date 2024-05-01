@@ -6,7 +6,6 @@ const handler = async (req, res) => {
     const desc = req.body.desc;
     const repoowner = req.body.owner;
     const reponame = req.body.reponame;
-    console.log(req.body);
     const octokit = new Octokit({
         auth: token,
     });

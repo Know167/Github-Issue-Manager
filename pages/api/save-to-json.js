@@ -21,7 +21,6 @@ const handler = async (req, res) => {
             sha: sha,
         }
     );
-    console.log(response);
     return res.status(response.status).json(response);
 };
 

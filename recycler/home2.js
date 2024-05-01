@@ -29,7 +29,6 @@ export default function Home2() {
             if (hasCode) {
                 const temp = url.split("?code=");
                 const winCode = temp[1];
-                console.log(winCode);
                 authCtx.loginHandler(winCode);
                 localStorage.setItem("code", winCode);
 
@@ -40,7 +39,6 @@ export default function Home2() {
                     client_secret: authCtx.client_secret,
                     redirect_uri: authCtx.redirect_uri,
                 };
-                console.log(reqBody);
                 const response = await fetch("api/get-access-token", {
                     method: "POST",
                     headers: {
@@ -50,14 +48,12 @@ export default function Home2() {
                     body: JSON.stringify(reqBody),
                 });
                 const { access_token } = await response.json();
-                console.log(access_token);
                 authCtx.tokenHandler(access_token);
             }
         };
         if (!token || token.length === 0) {
             getToken();
         } else {
-            console.log(token);
         }
     }, [token]);
 
@@ -93,7 +89,6 @@ export default function Home2() {
 
                     if (pagesRemaining) {
                         url = linkHeader.match(nextPattern)[0];
-                        console.log(url);
                     }
                 }
                 setIsLoading(false);
@@ -131,7 +126,6 @@ export default function Home2() {
             // });
 
             userDataCtx.handleRepoList(repoList);
-            console.log(repoList);
         };
 
         if (token && repoList?.length === 0) {

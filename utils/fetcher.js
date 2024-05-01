@@ -1,5 +1,4 @@
 const fetcher = async (url, token, data) => {
-    console.log('token in fetcher: '+ token)
     const response = await fetch(url, {
         method: "POST",
         headers: {
