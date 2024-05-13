@@ -1,47 +1,39 @@
 import { useSession, signIn } from "next-auth/react";
+import Link from "next/link";
 
 import UserBio from "@/Components/UserBio";
-import { AuthContext } from "@/store/authContext";
-import { UserDataContext } from "@/store/userDataContext";
-import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
 
 const Navigation = (props) => {
     const { data: session } = useSession();
-    const handleSignin = (e) => {
-        e.preventDefault();
-        signIn("github");
-    };
-
+    
     return (
         <>
             {session && (
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        border: "2px solid white",
-                    }}>
-                    <div>{session && <Link href="/repos">Home</Link>}</div>
-                    <div>
-                        {session && (
-                            <Link href="/add_repo">New Repository</Link>
-                        )}
+                <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6 rounded-lg">
+                    <div className="flex items-center flex-shrink-0 text-white mr-8">
+                        <span className="font-semibold text-2xl tracking-tight">
+                            GiT Monger
+                        </span>
                     </div>
-                    <div style={{ marginLeft: "70%" }}>
-                        {session && (
-                            <UserBio
-                                username={session.user.name}
-                                avatar={session.user.image}
-                            />
-                        )}
+                    <div className="flex flex-grow lg:flex lg:items-center">
+                        <div className="lg:mt-0 text-teal-200 hover:text-white mr-4">
+                            {session && <Link href="/repos">Home</Link>}
+                        </div>
+                        <div className="lg:mt-0 text-teal-200 hover:text-white mr-4">
+                            {session && (
+                                <Link href="/add_repo">New Repository</Link>
+                            )}
+                        </div>
+                        <div className="absolute inset-y-0 right-0 mt-3 mr-4">
+                            {session && (
+                                <UserBio
+                                    username={session.user.name}
+                                    avatar={session.user.image}
+                                />
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
-            {!session && (
-                <a href="#" onClick={handleSignin} className="btn-signin">
-                    Sign in
-                </a>
+                </nav>
             )}
             {props.children}
         </>

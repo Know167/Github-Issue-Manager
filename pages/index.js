@@ -1,28 +1,22 @@
 import React from "react";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import Navigation from "@/Components/Navigation";
+import Home from "@/Components/Home";
 
-const Index = () => {
-  const { data: session, status } = useSession();
+const Index = ({Component, PageProps}) => {
+    const { data: session, status } = useSession();
     const loading = status === "loading";
-  
-  
     return (
         <>
             {loading && <div>Loading...</div>}
+            {!session&&<Home/>}
             {session && (
-                <p style={{ marginBottom: "10px" }}>
-                    {" "}
-                    Welcome, {session.user.name ?? session.user.email}
-                </p>
+                <Navigation>
+                   
+                </Navigation>
             )}
-            {session&&localStorage.setItem('access_token', session.accessToken)}
-            {!session && (
-                <>
-                    <p style={{ textAlign: "center", marginTop: "50px" }}>
-                        Please Sign in
-                    </p>
-                </>
-            )}
+            {session &&
+                localStorage.setItem("access_token", session.accessToken)}
         </>
     );
 };

@@ -13,26 +13,26 @@ const UserBio = (props) => {
         e.preventDefault();
         signOut();
         authCtx.logoutHandler()
-        router.push('/api/auth/signin')
+        router.push('/')
     }
     const toggleMenu = () => {
+        console.log("toggling")
         settoggle((prev) => !prev);
     };
-    const dropdownshow = toggle ? classes.show : null;
+    const dropdownshow = toggle ? "relative" : "hidden";
     return (
-        
         <div className={classes.dropdown}>
             <button onClick={toggleMenu} className={classes.dropbtn}>
                 <img
                     src={props.avatar}
                     alt="avatar"
-                    className={classes.avatar}
+                    className="w-20 rounded-full border-2 "
                 />
             </button>
             <div
                 id="myDropdown"
-                className={`${classes.dropdownContent} ${dropdownshow}`}>
-                <button onClick={logout} >Logout</button>
+                className={`${dropdownshow} bg-orange-900 bg-opacity-75 text-sm rounded text-center text-white font-semibold rounded-2 `}>
+                <button onClick={logout}>Logout</button>
             </div>
         </div>
     );

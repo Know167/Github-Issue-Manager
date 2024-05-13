@@ -53,7 +53,7 @@ const AuthProvider = (props) => {
         dispatch({
             type: "LOGOUT",
         });
-        router.push("/api/auth/signin");
+        router.push("/");
     };
 
     const handleLogin = (code) => {
