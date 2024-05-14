@@ -5,10 +5,8 @@ import Home from "@/Components/Home";
 
 const Index = ({Component, PageProps}) => {
     const { data: session, status } = useSession();
-    const loading = status === "loading";
     return (
         <>
-            {loading && <div>Loading...</div>}
             {!session&&<Home/>}
             {session && (
                 <Navigation>
