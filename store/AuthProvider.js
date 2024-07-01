@@ -42,7 +42,7 @@ const AuthProvider = (props) => {
         redirect_uri: "http://localhost:3000/home",
         client_secret: process.env.GITHUB_SECRET,
         logoutHandler: () => {},
-        loginHandler: () => { },
+        loginHandler: () => {},
         tokenHandler: () => {},
         code: null,
         token: null,
