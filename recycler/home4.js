@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { AuthContext } from "@/store/authContext";
+import { AuthContext } from "@/recycler/authContext";
 import { UserDataContext } from "@/store/userDataContext";
 import fetcher from "@/utils/fetcher";
 import RepoList from "@/Components/RepoList";
@@ -42,7 +42,7 @@ const Home = () => {
                         const resData = await response.json();
                         setRepoList(resData);
                         userDataCtx.handleRepoList(resData);
-                        router.push('/repos')
+                        router.push("/repos");
                     }
                 } else {
                     // fetching Access Token
@@ -75,15 +75,13 @@ const Home = () => {
                     authCtx.loginHandler(winCode);
                     setCode(winCode);
                     localStorage.setItem("code", winCode);
-                    router.push('/home')
-                } 
-                    
-                
+                    router.push("/home");
+                }
             }
         };
         justChecking();
     }, [token, code, repoList]);
-    
+
     return <></>;
 };
 

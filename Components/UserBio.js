@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 
-import { AuthContext } from "@/store/authContext";
+import { AuthContext } from "@/recycler/authContext";
 import classes from "./UserBio.module.css";
 
 const UserBio = (props) => {
@@ -12,11 +12,11 @@ const UserBio = (props) => {
     const logout = (e) => {
         e.preventDefault();
         signOut();
-        authCtx.logoutHandler()
-        router.push('/')
-    }
+        authCtx.logoutHandler();
+        router.push("/");
+    };
     const toggleMenu = () => {
-        console.log("toggling")
+        console.log("toggling");
         settoggle((prev) => !prev);
     };
     const dropdownshow = toggle ? "relative" : "hidden";

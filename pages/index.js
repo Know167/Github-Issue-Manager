@@ -3,7 +3,7 @@ import { signIn, useSession } from "next-auth/react";
 import Navigation from "@/Components/Navigation";
 import Home from "@/Components/Home";
 
-const Index = ({Component, PageProps}) => {
+const Index = () => {
     const { data: session, status } = useSession();
     return (
         <>

@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { useRouter } from "next/router";
 
-import { AuthContext } from "./authContext";
+// import { AuthContext } from "./authContext";
 
 const authreducer = (authstate, action) => {
     switch (action.type) {
@@ -38,8 +38,8 @@ const AuthProvider = (props) => {
     const router = useRouter();
     const initialState = {
         isLoggedIn: false,
-        client_id: "41b15081d743c8755362",
-        redirect_uri: "http://localhost:3000/home",
+        client_id: process.env.GITHUB_ID,
+        redirect_uri: "https://localhost:3000",
         client_secret: process.env.GITHUB_SECRET,
         logoutHandler: () => {},
         loginHandler: () => {},
@@ -69,22 +69,22 @@ const AuthProvider = (props) => {
         });
     };
 
-    return (
-        <AuthContext.Provider
-            value={{
-                isLoggedIn: authstate.isLoggedIn,
-                client_id: authstate.client_id,
-                redirect_uri: authstate.redirect_uri,
-                client_secret: authstate.client_secret,
-                logoutHandler: handleLogout,
-                loginHandler: handleLogin,
-                tokenHandler: handleToken,
-                code: null,
-                token: null,
-            }}>
-            {props.children}
-        </AuthContext.Provider>
-    );
+    // return (
+    //     <AuthContext.Provider
+    //         value={{
+    //             isLoggedIn: authstate.isLoggedIn,
+    //             client_id: authstate.client_id,
+    //             redirect_uri: authstate.redirect_uri,
+    //             client_secret: authstate.client_secret,
+    //             logoutHandler: handleLogout,
+    //             loginHandler: handleLogin,
+    //             tokenHandler: handleToken,
+    //             code: null,
+    //             token: null,
+    //         }}>
+    //         {props.children}
+    //     </AuthContext.Provider>
+    // );
 };
 
 export default AuthProvider;

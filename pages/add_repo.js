@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { AuthContext } from "@/store/authContext";
+import { AuthContext } from "@/recycler/authContext";
 import fetcher from "@/utils/fetcher";
 
 const AddRepo = () => {
@@ -10,8 +10,8 @@ const AddRepo = () => {
     const nameRef = useRef();
     const descRef = useRef();
     const privRef = useRef();
-    const [error, setError]=useState({})
-  
+    const [error, setError] = useState({});
+
     const submitHandler = (event) => {
         event.preventDefault();
         if (nameRef.current.value?.length > 5) {
@@ -21,10 +21,12 @@ const AddRepo = () => {
                 privacy: privRef.current.checked,
             };
             fetcher("api/add-repo", session.accessToken, reqBody);
-            alert('repository created')
+            alert("repository created");
             router.push("/repos");
         } else {
-            setError({message: 'repository name must be greater than 5 characters'})
+            setError({
+                message: "repository name must be greater than 5 characters",
+            });
         }
     };
     return (

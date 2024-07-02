@@ -3,7 +3,7 @@ import { Octokit } from "octokit";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
-import { AuthContext } from "../store/authContext";
+import { AuthContext } from "./authContext";
 import { UserDataContext } from "../store/userDataContext";
 
 import RepoList from "@/Components/RepoList";

@@ -15,7 +15,7 @@ const callbacks = {};
         return session;
     })
     (callbacks.redirect=async function redirect(){
-        return "/";
+        return "http://localhost:3000";
     })
 const options = {
     secret: process.env.NEXTAUTH_SECRET,
@@ -24,7 +24,6 @@ const options = {
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
             authorization: { params: { scope: "user repo" } },
-            
         }),
     ],
     callbacks: callbacks,

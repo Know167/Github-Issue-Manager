@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../store/authContext";
+import { AuthContext } from "./authContext";
 
 const Login = () => {
     const authCtx = useContext(AuthContext);
