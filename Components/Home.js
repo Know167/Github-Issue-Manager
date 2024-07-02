@@ -305,8 +305,8 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full pt-9 justify-center items-start gap-8 inline-flex">
-                    <div className="basis-0 self-stretch pb-10 bg-white rounded-lg shadow flex-col justify-start items-center gap-3.5 inline-flex">
+                <div className="w-full pt-9 justify-center flex gap-x-8">
+                    <div className="self-stretch pb-10 bg-white rounded-lg shadow flex-col justify-start items-center gap-3.5 inline-flex">
                         <img
                             className="rounded-tl-lg rounded-tr-lg"
                             src="https://via.placeholder.com/300x187"
@@ -322,7 +322,7 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="basis-0 self-stretch pb-10 bg-white rounded-lg shadow flex-col justify-start items-center gap-3.5 inline-flex">
+                    <div className="self-stretch pb-10 bg-white rounded-lg shadow flex-col justify-start items-center gap-3.5 inline-flex">
                         <img
                             className="rounded-tl-lg rounded-tr-lg"
                             src="https://via.placeholder.com/300x187"
