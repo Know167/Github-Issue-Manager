@@ -15,7 +15,7 @@ const callbacks = {};
         return session;
     })
     (callbacks.redirect=async function redirect(){
-        return "http://localhost:3000";
+        return process.env.NEXTAUTH_URL;
     })
 const options = {
     secret: process.env.NEXTAUTH_SECRET,
