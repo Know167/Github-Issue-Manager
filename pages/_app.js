@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
-// import AuthProvider from "@/recycler/AuthProvider";
+import { NextUIProvider } from "@nextui-org/react";
 import "@/styles/globals.css";
 import UserDataProvider from "@/store/userDataProvider";
 
@@ -15,12 +15,16 @@ export default function App({ Component, pageProps }) {
     });
 
     return (
+            <NextUIProvider>
+
         <SessionProvider session={pageProps.session}>
             {/* <AuthProvider> */}
+
                 <UserDataProvider>
                     <Component {...pageProps} />
                 </UserDataProvider>
             {/* </AuthProvider> */}
-        </SessionProvider>
+            </SessionProvider>
+            </NextUIProvider>
     );
 }

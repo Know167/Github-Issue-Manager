@@ -8,11 +8,9 @@ const Index = () => {
     return (
         <>
             {!session&&<Home/>}
-            {session && (
-                <Navigation>
-                   
-                </Navigation>
-            )}
+            {/* {session && (
+                <Navigation/>
+            )} */}
             {session &&
                 localStorage.setItem("access_token", session.accessToken)}
         </>
