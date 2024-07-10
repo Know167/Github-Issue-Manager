@@ -31,7 +31,7 @@ const UserBio = (props) => {
             </button>
             <div
                 id="myDropdown"
-                className={`${dropdownshow} bg-orange-900 bg-opacity-75 text-sm rounded text-center text-white font-semibold rounded-2 `}>
+                className={`${dropdownshow} bg-opacity-75 text-sm rounded text-center text-white font-semibold rounded-2 `}>
                 <button onClick={logout}>Logout</button>
             </div>
         </div>

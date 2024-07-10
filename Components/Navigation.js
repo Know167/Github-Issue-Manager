@@ -28,14 +28,17 @@ const Navigation = (props) => {
     return (
         <>
             {!session && (
-                <Navbar onMenuOpenChange={setIsMenuOpen} isBordered className="bg-teal-400 rounded">
+                <Navbar
+                    onMenuOpenChange={setIsMenuOpen}
+                    isBordered
+                    className="rounded">
                     <NavbarContent>
-                        <NavbarMenuToggle 
+                        <NavbarMenuToggle
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                             className="sm:hidden text-xl"
                         />
                         <NavbarBrand>
-                            <p className="py-2 md:text-nowrap text-white text-xl lg:text-2xl font-bold font-['VT323'] items-center lg:mx-6">
+                            <p className="py-2 md:text-nowrap text-slate-900 font-serif- text-2xl font-bold vt323-regular items-center lg:mx-6">
                                 Git Monger
                             </p>
                         </NavbarBrand>

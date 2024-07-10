@@ -13,12 +13,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                orange: {
-                    900: "#b81427",
-                    500: "#f63c42",
-                },
+                primary: { 600: "#50ff90", 400: "#86efac" },
             },
         },
     },
-  plugins: [nextui()],
+    plugins: [nextui()],
 };
