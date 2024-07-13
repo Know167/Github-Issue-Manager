@@ -115,3 +115,9 @@ a {
   font-size: x-large;
   font-style: normal;
 }
+.vt323-xlarge {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-size: 2.5rem;
+  font-style: normal;
+}
