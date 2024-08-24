@@ -7,7 +7,7 @@ const Index = () => {
     const { data: session, status } = useSession();
     return (
         <>
-            {!session&&<Home/>}
+            <Home/>
             {/* {session && (
                 <Navigation/>
             )} */}

@@ -1,182 +1,172 @@
 import Image from "next/image";
+import { useEffect } from "react"
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 import meeting from "../public/assets/meeting.jpg";
 import UseCaseCards from "./UseCaseCards";
 import FeatureSection from "./FeatureSection";
-import Navigation from "./Navigation";
 
 function Home() {
+    const { data: session } = useSession();
     const router = useRouter();
+    
+    useEffect(() => {
+        if (session) {
+            router.push("/repos");
+        }
+    }, [session, router]);
 
-    const handleSignin = (e) => {
-        e.preventDefault();
-        signIn("github");
-    };
     return (
         <div className="w-full flex-col xl:px-60 lg:px-45 md:px-32 px-12 pb-9 bg-slate-100 shadow justify-center items-center inline-flex">
-            {/* <div className="pr-3 py-2.5 items-center inline-flex mx-6">
-                    <div className="self-stretch justify-start items-start gap-5 inline-flex">
-                        <div className="text-center text-gray-600 text-sm font-normal font-['Source Sans 3'] leading-none">
-                            Why GiT Monger?
-                        </div>
-                        <div className="text-center text-gray-600 text-sm font-bold font-['Source Sans 3'] leading-none">
-                            Use Cases
-                        </div>
-                        <div className="text-center text-gray-600 text-sm font-normal font-['Source Sans 3'] leading-none">
-                            Pricing
-                        </div>
-                        <div className="text-center text-gray-600 text-sm font-normal font-['Source Sans 3'] leading-none">
-                            Support
-                        </div>
-                        <div className="text-center text-gray-600 text-sm font-normal font-['Source Sans 3'] leading-none">
-                            Blog
-                        </div>
-                    </div>
-                </div> */}
-            <Navigation />
+            {!session && (
+                <>
+                    <div id="main" className="flex-row mt-16">
+                        <div
+                            id="main-left"
+                            className="grid grid-rows-3 grid-cols-1 float-left w-6/12 gap-2">
+                            <div className="flex text-zinc-700 text-5xl font-semibold  ">
+                                GiT Monger for all projects
+                            </div>
 
-            <div id="main" className="flex-row mt-16">
-                <div
-                    id="main-left"
-                    className="grid grid-rows-3 grid-cols-1 float-left w-6/12 gap-2">
-                    <div className="flex text-zinc-700 text-6xl font-semibold  ">
-                        GiT Monger for all projects
-                    </div>
-
-                    <div className="text-gray-600 text-lg font-normal   leading-relaxed">
-                        Crafted to aid you in maintaining focus and
-                        accomplishing tasks efficiently.
-                        <br />
-                        Stripped of unnecessary clutter or complications that
-                        might hinder your progress.
-                    </div>
-                    <div className="h-10 gap-6 flex">
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="name@company.com"
-                            className="bg-white shadow rounded-full p-1 pl-3"
-                        />
-                        <div className="w-28 bg-green-300 rounded-full shadow border border-white justify-center items-center inline-flex">
-                            <button className="text-center text-stone-600 text-[10px] font-semibold font-['Source Sans 3'] uppercase leading-none">
-                                GET STARTED
-                            </button>
+                            <div className="text-gray-600 text-lg font-normal   leading-relaxed">
+                                Crafted to aid you in maintaining focus and
+                                accomplishing tasks efficiently.
+                                <br />
+                                Stripped of unnecessary clutter or complications
+                                that might hinder your progress.
+                            </div>
+                            <div className="h-10 gap-6 flex">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="name@company.com"
+                                    className="bg-white shadow rounded-full p-1 pl-3"
+                                />
+                                <div className="w-28 bg-green-300 rounded-full shadow border border-white justify-center items-center inline-flex">
+                                    <button className="text-center text-stone-600 text-[10px] font-semibold font-['Source Sans 3'] uppercase leading-none">
+                                        GET STARTED
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            id="main-right"
+                            className="flex float-right rounded-xl sm:w-0 md:w-6/12 h-full">
+                            <Image
+                                src={meeting}
+                                alt="meeting-image"
+                                width={500}
+                                height={500}
+                                style={{ borderRadius: "20px" }}
+                            />
                         </div>
                     </div>
-                </div>
-                <div
-                    id="main-right"
-                    className="flex float-right rounded-xl sm:w-0 md:w-6/12 h-full">
-                    <Image
-                        src={meeting}
-                        alt="meeting-image"
-                        width={500}
-                        height={500}
-                        style={{ borderRadius: "20px" }}
-                    />
-                </div>
-            </div>
-            <div id="title" className="">
-                <div className="text-center text-zinc-700 text-xl font-semibold   leading-10">
-                    The simplest way to manage and document projects
-                </div>
-                <div className="text-center text-gray-600 text-base font-normal   leading-relaxed">
-                    For teams that don&apost want to overcomplicate their
-                    workflows.
-                </div>
-            </div>
-            <div className="mt-5">
-                <Image
-                    src={meeting}
-                    alt="meeting-image"
-                    width={700}
-                    height={500}
-                    style={{ borderRadius: "20px" }}
-                />
-            </div>
-            <div id="features-1" className="flex lg:flex-row my-24 ">
-                <FeatureSection
-                    title="Create lightweight project boards"
-                    direction="left"
-                    description=" Designed to be simple and intuitive in every way, GiT Monger enables anyone to be productive right away, tech-savvy or not."
-                    list={["Board View", "Custom fields", "Filters"]}
-                />
-            </div>
-            <div id="features-2" className="flex lg:flex-row my-24">
-                <FeatureSection
-                    title="Plan and document your work"
-                    direction="right"
-                    description="Every card on your GiT Monger board is a long-form doc, where you can add tasks, document project goals, reference other related docs, embed files, and more."
-                    list={[
-                        "Task Lists",
-                        "Due Dates & Reminders",
-                        "Easy Editor",
-                        "Media Embeds",
-                    ]}
-                />
-            </div>
-            <div id="features-3" className="flex lg:flex-row my-24 ">
-                <FeatureSection
-                    title="Collaborate with ease"
-                    direction="left"
-                    description="Communicate with full context, directly in GiT Monger. Don&apost let important discussions scatter across emails."
-                    list={["Real-time collaboration", "Comments", "Mentions"]}
-                />
-            </div>
-            <div className="justify-center items-center mb-0">
-                <div className="">
-                    <div className="text-center text-zinc-700 text-2xl font-semibold  leading-10">
-                        Templates for every team
+                    <div id="title" className="">
+                        <div className="text-center text-zinc-700 text-xl font-semibold leading-10">
+                            The simplest way to manage and document projects
+                        </div>
+                        <div className="text-center text-gray-600 text-base font-normal leading-relaxed">
+                            For teams that don&apost want to overcomplicate
+                            their workflows.
+                        </div>
                     </div>
-                    <div className="text-center text-gray-600 text-md font-normal leading-relaxed">
-                        Simplify project management, company-wide.
-                    </div>
-                </div>
-                <div className="grid xl:grid-rows-2">
-                    <div className=" gap-8 mt-3 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 justify-items-center">
-                        <UseCaseCards
-                            imgLink="https://via.placeholder.com/300x187"
-                            imgHeight={187}
-                            imgWidth={300}
-                            title="Projects"
-                            description="Plan, track, and document all your projects in one place."
-                        />
-                        <UseCaseCards
-                            imgLink="https://via.placeholder.com/300x187"
-                            imgHeight={187}
-                            imgWidth={300}
-                            title="Marketing Tasks"
-                            description="Manage your marketing campaigns, projects, and tasks."
-                        />
-                        <UseCaseCards
-                            imgLink="https://via.placeholder.com/300x187"
-                            imgHeight={187}
-                            imgWidth={300}
-                            title="Game Dev Tasks"
-                            description="Plan and manage the progress of your game development project."
+                    <div className="mt-5">
+                        <Image
+                            src={meeting}
+                            alt="meeting-image"
+                            width={700}
+                            height={500}
+                            style={{ borderRadius: "20px" }}
                         />
                     </div>
-                    <div className="mt-3 grid lg:grid-cols-2 grid-cols-1 justify-items-center h-fit">
-                        <UseCaseCards
-                            imgLink="https://via.placeholder.com/300x187"
-                            imgHeight={187}
-                            imgWidth={300}
-                            title="Sprint"
-                            description="Keep pace with the rollout of new features and iterations."
-                        />
-                        <UseCaseCards
-                            imgLink="https://via.placeholder.com/300x187"
-                            imgHeight={187}
-                            imgWidth={300}
-                            title="Issue Tracker"
-                            description="Capture, prioritize, and resolve issues quickly."
+                    <div id="features-1" className="flex lg:flex-row my-24 ">
+                        <FeatureSection
+                            title="Create lightweight project boards"
+                            direction="left"
+                            description=" Designed to be simple and intuitive in every way, GiT Monger enables anyone to be productive right away, tech-savvy or not."
+                            list={["Board View", "Custom fields", "Filters"]}
                         />
                     </div>
-                </div>
-            </div>
+                    <div id="features-2" className="flex lg:flex-row my-24">
+                        <FeatureSection
+                            title="Plan and document your work"
+                            direction="right"
+                            description="Every card on your GiT Monger board is a long-form doc, where you can add tasks, document project goals, reference other related docs, embed files, and more."
+                            list={[
+                                "Task Lists",
+                                "Due Dates & Reminders",
+                                "Easy Editor",
+                                "Media Embeds",
+                            ]}
+                        />
+                    </div>
+                    <div id="features-3" className="flex lg:flex-row my-24 ">
+                        <FeatureSection
+                            title="Collaborate with ease"
+                            direction="left"
+                            description="Communicate with full context, directly in GiT Monger. Don&apost let important discussions scatter across emails."
+                            list={[
+                                "Real-time collaboration",
+                                "Comments",
+                                "Mentions",
+                            ]}
+                        />
+                    </div>
+                    <div className="justify-center items-center mb-0">
+                        <div className="">
+                            <div className="text-center text-zinc-700 text-2xl font-semibold  leading-10">
+                                Templates for every team
+                            </div>
+                            <div className="text-center text-gray-600 text-md font-normal leading-relaxed">
+                                Simplify project management, company-wide.
+                            </div>
+                        </div>
+                        <div className="grid xl:grid-rows-2">
+                            <div className=" gap-8 mt-3 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 justify-items-center">
+                                <UseCaseCards
+                                    imgLink="https://via.placeholder.com/300x187"
+                                    imgHeight={187}
+                                    imgWidth={300}
+                                    title="Projects"
+                                    description="Plan, track, and document all your projects in one place."
+                                />
+                                <UseCaseCards
+                                    imgLink="https://via.placeholder.com/300x187"
+                                    imgHeight={187}
+                                    imgWidth={300}
+                                    title="Marketing Tasks"
+                                    description="Manage your marketing campaigns, projects, and tasks."
+                                />
+                                <UseCaseCards
+                                    imgLink="https://via.placeholder.com/300x187"
+                                    imgHeight={187}
+                                    imgWidth={300}
+                                    title="Game Dev Tasks"
+                                    description="Plan and manage the progress of your game development project."
+                                />
+                            </div>
+                            <div className="mt-3 grid lg:grid-cols-2 grid-cols-1 justify-items-center h-fit">
+                                <UseCaseCards
+                                    imgLink="https://via.placeholder.com/300x187"
+                                    imgHeight={187}
+                                    imgWidth={300}
+                                    title="Sprint"
+                                    description="Keep pace with the rollout of new features and iterations."
+                                />
+                                <UseCaseCards
+                                    imgLink="https://via.placeholder.com/300x187"
+                                    imgHeight={187}
+                                    imgWidth={300}
+                                    title="Issue Tracker"
+                                    description="Capture, prioritize, and resolve issues quickly."
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
