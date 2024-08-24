@@ -36,18 +36,24 @@ const Navigation = () => {
                     onMenuOpenChange={setIsMenuOpen}
                     isBordered
                     className="rounded bg-slate-100 px-32">
-                    <NavbarContent>
-                        <NavbarMenuToggle
-                            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                            className="sm:hidden text-xl"
-                        />
-                        <NavbarBrand>
-                            <p className="py-2 md:text-nowrap text-slate-900 font-bold vt323-xlarge items-center lg:mx-6">
-                                Git Monger
-                            </p>
-                        </NavbarBrand>
+                    {/* Small screens: Navbar with brand and hamburger menu on the left */}
+                    <NavbarContent className="flex justify-between items-center">
+                        <div className="flex items-center">
+                            <NavbarMenuToggle
+                                aria-label={
+                                    isMenuOpen ? "Close menu" : "Open menu"
+                                }
+                                className="text-xl mr-4"
+                            />
+                            <NavbarBrand>
+                                <p className="py-2 text-slate-900 font-bold vt323-xlarge items-center">
+                                    Git Monger
+                                </p>
+                            </NavbarBrand>
+                        </div>
                     </NavbarContent>
 
+                    {/* Larger screens content */}
                     <NavbarContent
                         className="hidden sm:flex gap-4"
                         justify="center">
@@ -59,9 +65,22 @@ const Navigation = () => {
                             </NavbarItem>
                         ))}
                     </NavbarContent>
-                    <NavbarContent justify="end">
-                        <NavbarItem className="hidden lg:flex">
-                            <Link onClick={handleSignin}>Login</Link>
+
+                    {/* <NavbarContent className="hidden sm:flex" justify="end">
+                        <NavbarItem>
+                            <Button onClick={handleSignin}>Login</Button>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Button as={Link} color="primary" variant="flat">
+                                Sign Up
+                            </Button>
+                        </NavbarItem>
+                    </NavbarContent> */}
+
+                    {/* Small screens - only show Login and Sign Up */}
+                    <NavbarContent className="flex" justify="end">
+                        <NavbarItem>
+                            <Button onClick={handleSignin}>Login</Button>
                         </NavbarItem>
                         <NavbarItem>
                             <Button as={Link} color="primary" variant="flat">
@@ -69,6 +88,8 @@ const Navigation = () => {
                             </Button>
                         </NavbarItem>
                     </NavbarContent>
+
+                    {/* Hamburger menu - visible on small screens */}
                     <NavbarMenu>
                         {menuItems.map((item, index) => (
                             <NavbarMenuItem key={`${item}-${index}`}>
