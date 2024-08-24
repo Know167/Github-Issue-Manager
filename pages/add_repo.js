@@ -1,7 +1,6 @@
 import React, { useRef, useContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { AuthContext } from "@/recycler/authContext";
 import fetcher from "@/utils/fetcher";
 
 const AddRepo = () => {

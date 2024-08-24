@@ -14,9 +14,9 @@ const callbacks = {};
     if (session) { session.accessToken = token?.accessToken; }
         return session;
     })
-    (callbacks.redirect=async function redirect(){
-        return process.env.NEXTAUTH_URL;
-    })
+    // (callbacks.redirect=async function redirect(){
+    //     return process.env.NEXTAUTH_URL;
+    // })
 const options = {
     secret: process.env.NEXTAUTH_SECRET,
     providers: [

@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { AuthContext } from "@/recycler/authContext";
+// import { AuthContext } from "@/recycler/authContext";
 import { UserDataContext } from "@/store/userDataContext";
 import fetcher from "@/utils/fetcher";
 import RepoList from "@/Components/RepoList";

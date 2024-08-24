@@ -1,18 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 
-import { AuthContext } from "@/recycler/authContext";
 import classes from "./UserBio.module.css";
 
 const UserBio = (props) => {
     const router = useRouter();
     const [toggle, settoggle] = useState(false);
-    const authCtx = useContext(AuthContext);
     const logout = (e) => {
         e.preventDefault();
         signOut();
-        authCtx.logoutHandler();
         router.push("/");
     };
     const toggleMenu = () => {
