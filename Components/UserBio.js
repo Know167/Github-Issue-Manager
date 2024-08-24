@@ -10,7 +10,7 @@ const UserBio = (props) => {
     const logout = (e) => {
         e.preventDefault();
         signOut();
-        router.push("/");
+        router.push("");
     };
     const toggleMenu = () => {
         console.log("toggling");
