@@ -18,7 +18,7 @@ const RepoList = ({ repoList }) => {
         "Oct",
         "Nov",
         "Dec",
-    ];
+  ];
     const [specificRepo, setSpecificRepo]=useState({})
     const openSpecificRepo = () => {
         router.push(`/issue/${specificRepo.id}`)

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signIn } from "next-auth/react";
 
@@ -10,13 +10,12 @@ import FeatureSection from "./FeatureSection";
 function Home() {
     const { data: session } = useSession();
     const router = useRouter();
-    
+
     useEffect(() => {
         if (session) {
             router.push("/repos");
         }
     }, [session, router]);
-
     return (
         <div className="w-full flex-col xl:px-60 lg:px-45 md:px-32 px-12 pb-9 bg-slate-100 shadow justify-center items-center inline-flex">
             {!session && (
