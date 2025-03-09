@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
+import createAnonymousUser from "@/utils/createAnonymousUser";
 
 const callbacks = {};
 (callbacks.jwt = async function jwt({ token, account }) {
@@ -11,15 +13,24 @@ const callbacks = {};
 }),
     (callbacks.session = async function session({ session, token, user }) {
         // Send properties to the client, like an access_token from a provider.
-    if (session) { session.accessToken = token?.accessToken; }
+        if (session) {
+            session.accessToken = token?.accessToken;
+        }
         return session;
-    })
-    // (callbacks.redirect=async function redirect(){
-    //     return process.env.NEXTAUTH_URL;
-    // })
+    });
+// (callbacks.redirect=async function redirect(){
+//     return process.env.NEXTAUTH_URL;
+// })
 const options = {
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
+        Credentials({
+            name: "anonymous",
+            credentials: {},
+            async authorize(credentials, req) {
+                return createAnonymousUser();
+            },
+        }),
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,

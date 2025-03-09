@@ -11,8 +11,8 @@ const Index = () => {
             {/* {session && (
                 <Navigation/>
             )} */}
-            {session &&
-                localStorage.setItem("access_token", session.accessToken)}
+            {/* {session &&
+                localStorage.setItem("access_token", session.accessToken)} */}
         </>
     );
 };

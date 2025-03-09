@@ -12,12 +12,10 @@ const Repos = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const token = localStorage
-            ? localStorage.getItem("access_token")
-            : session
-            ? session.accessToken
-            : "";
-
+        const token =
+            session?.accessToken ||
+            "guest-token";
+        const guestSession = JSON.parse(localStorage?.getItem("guestSession"));
         const asycwrapper = async () => {
             const getrepolist = async () => {
                 const repores = await fetcher("api/get-repo-list", token);
@@ -33,10 +31,15 @@ const Repos = () => {
             }
             router.push("/repos");
         };
-        asycwrapper();
+        if (guestSession) {
+          setReposList(guestSession.repos);
+          userDataCtx.handleRepoList(guestSession.repos);
+        } else {
+            asycwrapper();
+        }
     }, []);
 
-    let ListToBe = [];
+  let ListToBe = [];
     if (reposList) {
         ListToBe = reposList.reduce((acc, _, index, orig) => {
             return !(index % 5)

@@ -9,11 +9,10 @@ const UserBio = (props) => {
     const [toggle, settoggle] = useState(false);
     const logout = (e) => {
         e.preventDefault();
-        signOut();
-        router.push("");
+        localStorage.removeItem("guestSession");
+        signOut({ callbackUrl: "/" });
     };
     const toggleMenu = () => {
-        console.log("toggling");
         settoggle((prev) => !prev);
     };
     const dropdownshow = toggle ? "relative" : "hidden";

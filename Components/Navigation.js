@@ -13,11 +13,12 @@ import {
     Link,
     Button,
 } from "@nextui-org/react";
+import useGuestLogin from "@/utils/useGuestLogin";
 
 const Navigation = () => {
     const { data: session } = useSession();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+    const handleGuestLogin = useGuestLogin();
     const menuItems = [
         "Why GiT Monger?",
         "Use Cases",
@@ -82,9 +83,18 @@ const Navigation = () => {
                         <NavbarItem>
                             <Button onClick={handleSignin}>Login</Button>
                         </NavbarItem>
-                        <NavbarItem>
+                        {/* <NavbarItem>
                             <Button as={Link} color="primary" variant="flat">
                                 Sign Up
+                            </Button>
+                        </NavbarItem> */}
+                        <NavbarItem>
+                            <Button
+                                as={Link}
+                                color="primary"
+                                variant="flat"
+                                onClick={handleGuestLogin}>
+                                Guest Login
                             </Button>
                         </NavbarItem>
                     </NavbarContent>
