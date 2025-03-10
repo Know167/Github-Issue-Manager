@@ -33,12 +33,19 @@ const IssueNode = (props) => {
         }
     }
     const gitCommitHandler = async () => {
-        if (title && title.length > 5) {
+        const trimTitle = title.trim();
+        const trimDesc = desc.trim();
+        if (
+            trimTitle &&
+            trimTitle.length > 5 &&
+            trimDesc &&
+            trimDesc.length > 5
+        ) {
             const reqBody = {
                 owner: session.user.name,
                 reponame: sperepo[0].name,
-                title,
-                desc,
+                trimTitle,
+                trimDesc,
             };
             const response = await fetcher(
                 "/api/add-git-issue",
@@ -46,6 +53,17 @@ const IssueNode = (props) => {
                 reqBody
             );
             alert("issue has been created");
+        } else {
+            if (trimTitle.length == 0) {
+                alert("Title cannot be empty");
+            } else {
+                alert("Title should be more than 5 characters");
+            }
+            if (trimDesc.length == 0) {
+                alert("Description cannot be empty");
+            } else {
+                alert("Description should be more than 5 characters");
+            }
         }
     };
 
@@ -69,16 +87,33 @@ const IssueNode = (props) => {
         props.updateFn();
     };
     return (
-        <div>
-            <button onClick={addIssue}>+</button>
-            <button onClick={deleteIssue}>del</button>
-            <button onClick={gitCommitHandler}>toGit</button>
+        <div className="bg-white rounded-lg shadow-md p-4 mb-4">
+            <div className="flex justify-between items-center mb-2">
+                <button
+                    onClick={addIssue}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    +
+                </button>
+                <button
+                    onClick={deleteIssue}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    del
+                </button>
+                <button
+                    onClick={gitCommitHandler}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    toGit
+                </button>
+            </div>
             <input
                 type="text"
                 name="title"
                 id="title"
+                placeholder="Title"
                 value={title}
+                required
                 onChange={titleChangeHandler}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
             />
             <div>
                 <textarea
@@ -86,15 +121,13 @@ const IssueNode = (props) => {
                     id="desc"
                     rows={8}
                     value={desc}
+                    required
+                    placeholder="Description"
                     onChange={descChangeHandler}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                }}>
+            <div className="flex flex-wrap justify-evenly">
                 {props.node.child.length > 0 &&
                     props.node.child.map((i) => {
                         return (

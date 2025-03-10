@@ -16,6 +16,7 @@ function Home() {
             router.push("/repos");
         }
     }, [session, router]);
+
     return (
         <div className="w-full flex-col xl:px-60 lg:px-45 md:px-32 px-12 pb-9 bg-slate-100 shadow justify-center items-center inline-flex">
             {!session && (
@@ -58,72 +59,83 @@ function Home() {
                                 alt="meeting-image"
                                 width={500}
                                 height={500}
-                                style={{ borderRadius: "20px" }}
+                                className="rounded-lg"
                             />
                         </div>
                     </div>
-                    <div id="title" className="">
-                        <div className="text-center text-zinc-700 text-xl font-semibold leading-10">
-                            The simplest way to manage and document projects
+
+                    {/* Features Section */}
+                    <div id="features" className="mt-16">
+                        <div id="title" className="text-center mb-12">
+                            <h2 className="text-zinc-700 text-3xl font-semibold leading-10">
+                                The simplest way to manage and document projects
+                            </h2>
+                            <p className="text-gray-600 text-lg font-normal leading-relaxed">
+                                For teams that dont want to overcomplicate their
+                                workflows.
+                            </p>
                         </div>
-                        <div className="text-center text-gray-600 text-base font-normal leading-relaxed">
-                            For teams that don&apost want to overcomplicate
-                            their workflows.
+                        <div className="flex justify-center mt-5">
+                            <Image
+                                src={meeting}
+                                alt="meeting-image"
+                                width={700}
+                                height={500}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div id="features-1" className="flex lg:flex-row my-24">
+                            <FeatureSection
+                                title="Create lightweight project boards"
+                                direction="left"
+                                description="Designed to be simple and intuitive in every way, GiT Monger enables anyone to be productive right away, tech-savvy or not."
+                                list={[
+                                    "Board View",
+                                    "Custom fields",
+                                    "Filters",
+                                ]}
+                            />
+                        </div>
+                        <div id="features-2" className="flex lg:flex-row my-24">
+                            <FeatureSection
+                                title="Plan and document your work"
+                                direction="right"
+                                description="Every card on your GiT Monger board is a long-form doc, where you can add tasks, document project goals, reference other related docs, embed files, and more."
+                                list={[
+                                    "Task Lists",
+                                    "Due Dates & Reminders",
+                                    "Easy Editor",
+                                    "Media Embeds",
+                                ]}
+                            />
+                        </div>
+                        <div id="features-3" className="flex lg:flex-row my-24">
+                            <FeatureSection
+                                title="Collaborate with ease"
+                                direction="left"
+                                description="Communicate with full context, directly in GiT Monger. Don't let important discussions scatter across emails."
+                                list={[
+                                    "Real-time collaboration",
+                                    "Comments",
+                                    "Mentions",
+                                ]}
+                            />
                         </div>
                     </div>
-                    <div className="mt-5">
-                        <Image
-                            src={meeting}
-                            alt="meeting-image"
-                            width={700}
-                            height={500}
-                            style={{ borderRadius: "20px" }}
-                        />
-                    </div>
-                    <div id="features-1" className="flex lg:flex-row my-24 ">
-                        <FeatureSection
-                            title="Create lightweight project boards"
-                            direction="left"
-                            description=" Designed to be simple and intuitive in every way, GiT Monger enables anyone to be productive right away, tech-savvy or not."
-                            list={["Board View", "Custom fields", "Filters"]}
-                        />
-                    </div>
-                    <div id="features-2" className="flex lg:flex-row my-24">
-                        <FeatureSection
-                            title="Plan and document your work"
-                            direction="right"
-                            description="Every card on your GiT Monger board is a long-form doc, where you can add tasks, document project goals, reference other related docs, embed files, and more."
-                            list={[
-                                "Task Lists",
-                                "Due Dates & Reminders",
-                                "Easy Editor",
-                                "Media Embeds",
-                            ]}
-                        />
-                    </div>
-                    <div id="features-3" className="flex lg:flex-row my-24 ">
-                        <FeatureSection
-                            title="Collaborate with ease"
-                            direction="left"
-                            description="Communicate with full context, directly in GiT Monger. Don&apost let important discussions scatter across emails."
-                            list={[
-                                "Real-time collaboration",
-                                "Comments",
-                                "Mentions",
-                            ]}
-                        />
-                    </div>
-                    <div className="justify-center items-center mb-0">
-                        <div className="">
-                            <div className="text-center text-zinc-700 text-2xl font-semibold  leading-10">
+
+                    {/* Use Cases Section */}
+                    {/* Use Cases Section */}
+                    <div className="justify-center items-center mb-0 px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-zinc-700 text-3xl font-semibold leading-10">
                                 Templates for every team
-                            </div>
-                            <div className="text-center text-gray-600 text-md font-normal leading-relaxed">
+                            </h2>
+                            <p className="text-gray-600 text-lg font-normal leading-relaxed">
                                 Simplify project management, company-wide.
-                            </div>
+                            </p>
                         </div>
-                        <div className="grid xl:grid-rows-2">
-                            <div className=" gap-8 mt-3 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 justify-items-center">
+                        <div className="grid gap-8">
+                            <div className="grid xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-8 justify-items-center">
                                 <UseCaseCards
                                     imgLink="https://via.placeholder.com/300x187"
                                     imgHeight={187}
@@ -146,7 +158,7 @@ function Home() {
                                     description="Plan and manage the progress of your game development project."
                                 />
                             </div>
-                            <div className="mt-3 grid lg:grid-cols-2 grid-cols-1 justify-items-center h-fit">
+                            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-8 justify-items-center">
                                 <UseCaseCards
                                     imgLink="https://via.placeholder.com/300x187"
                                     imgHeight={187}

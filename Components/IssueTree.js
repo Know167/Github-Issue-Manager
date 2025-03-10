@@ -90,29 +90,38 @@ const IssueTree = (props) => {
         }
     };
     return (
-        <div>
-            {tree.title}
-            <button onClick={addChild}>+</button>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                }}>
-                {tree.child.length > 0 &&
-                    tree.child.map((i) => {
-                        return (
-                            <IssueNode
-                                key={i.id}
-                                node={i}
-                                id={i.id}
-                                updateFn={updateFn}
-                                deleteFn={deleteFn}
-                            />
-                        );
-                    })}
+        <div className="min-h-screen bg-slate-100 p-8">
+            <div className="max-w-7xl mx-auto">
+                <h1 className="text-3xl font-semibold text-green-800 mb-4">
+                    {tree.title}
+                </h1>
+                <div className="flex justify-between items-center mb-4">
+                    <button
+                        onClick={addChild}
+                        className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-700 transition duration-200">
+                        Add Issue
+                    </button>
+                    <button
+                        onClick={saveToJson}
+                        className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-700 transition duration-200">
+                        Save to File
+                    </button>
+                </div>
+                <div className="flex flex-wrap justify-evenly">
+                    {tree.child.length > 0 &&
+                        tree.child.map((i) => {
+                            return (
+                                <IssueNode
+                                    key={i.id}
+                                    node={i}
+                                    id={i.id}
+                                    updateFn={updateFn}
+                                    deleteFn={deleteFn}
+                                />
+                            );
+                        })}
+                </div>
             </div>
-            <button onClick={saveToJson}>save to file</button>
         </div>
     );
 };
