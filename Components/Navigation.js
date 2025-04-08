@@ -1,6 +1,6 @@
 import { useSession, signIn } from "next-auth/react";
-
 import UserBio from "@/Components/UserBio";
+import Link from "next/link";
 import React from "react";
 import {
     Navbar,
@@ -10,16 +10,19 @@ import {
     NavbarMenuToggle,
     NavbarMenu,
     NavbarMenuItem,
-    Link,
+    // Link,
     Button,
 } from "@nextui-org/react";
 import useGuestLogin from "@/utils/useGuestLogin";
 
-const Navigation = () => {
+const Navigation = ({ children }) => {
     const { data: session } = useSession();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const handleGuestLogin = useGuestLogin();
     const menuItems = [
+    const handleSignin = () => {
+        signIn("github");
+    };
         "Why GiT Monger?",
         "Use Cases",
         "Pricing",
@@ -207,6 +210,7 @@ const Navigation = () => {
                     </Navbar>
                 </>
             )}
+            {children}
         </>
     );
 };
