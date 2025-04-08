@@ -20,14 +20,16 @@ export default function App({ Component, pageProps }) {
                 {/* <AuthProvider> */}
 
                 <UserDataProvider>
-                    <Navigation />
-                    <Component {...pageProps} />
-                    {mounted && (
-                        <>
-                            <Analytics />
-                            <SpeedInsights />
-                        </>
-                    )}
+                    <Navigation>
+                        <Component {...pageProps} />
+
+                        </Navigation>
+                        {mounted && (
+                            <>
+                                <Analytics />
+                                <SpeedInsights />
+                            </>
+                        )}
                 </UserDataProvider>
                 {/* </AuthProvider> */}
             </SessionProvider>
