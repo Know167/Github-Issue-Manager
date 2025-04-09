@@ -18,18 +18,18 @@ function Home() {
     }, [session, router]);
 
     return (
-        <div className="w-full flex-col xl:px-60 lg:px-45 md:px-32 px-12 pb-9 bg-slate-100 shadow justify-center items-center inline-flex">
+        <div className="w-full flex-col xl:px-60 lg:px-45 md:px-32 px-12 pb-9 bg-neutral-100 shadow justify-center items-center inline-flex">   
             {!session && (
                 <>
                     <div id="main" className="flex-row mt-16">
                         <div
                             id="main-left"
                             className="grid grid-rows-3 grid-cols-1 float-left w-6/12 gap-2">
-                            <div className="flex text-zinc-700 text-5xl font-semibold  ">
-                                GiT Monger for all projects
+                            <div className="flex text-neutral-700 text-5xl font-semibold  ">
+                         GiT Monger for all projects
                             </div>
 
-                            <div className="text-gray-600 text-lg font-normal   leading-relaxed">
+                            <div className="text-neutral-600 text-lg font-normal   leading-relaxed">
                                 Crafted to aid you in maintaining focus and
                                 accomplishing tasks efficiently.
                                 <br />
@@ -67,10 +67,10 @@ function Home() {
                     {/* Features Section */}
                     <div id="features" className="mt-16">
                         <div id="title" className="text-center mb-12">
-                            <h2 className="text-zinc-700 text-3xl font-semibold leading-10">
+                            <h2 className="text-neutral-700 text-3xl font-semibold leading-10">
                                 The simplest way to manage and document projects
                             </h2>
-                            <p className="text-gray-600 text-lg font-normal leading-relaxed">
+                            <p className="text-neutral-600 text-lg font-normal leading-relaxed">
                                 For teams that dont want to overcomplicate their
                                 workflows.
                             </p>
@@ -127,10 +127,10 @@ function Home() {
                     {/* Use Cases Section */}
                     <div className="justify-center items-center mb-0 px-4">
                         <div className="text-center mb-12">
-                            <h2 className="text-zinc-700 text-3xl font-semibold leading-10">
+                            <h2 className="text-neutral-700 text-3xl font-semibold leading-10">
                                 Templates for every team
                             </h2>
-                            <p className="text-gray-600 text-lg font-normal leading-relaxed">
+                            <p className="text-neutral-600 text-lg font-normal leading-relaxed">
                                 Simplify project management, company-wide.
                             </p>
                         </div>
