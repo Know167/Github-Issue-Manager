@@ -17,17 +17,17 @@ const UserBio = (props) => {
     };
     const dropdownshow = toggle ? "relative" : "hidden";
     return (
-        <div className={classes.dropdown}>
-            <button onClick={toggleMenu} className={classes.dropbtn}>
+        <div className="relative inline-block w-12 h-12">
+            <button onClick={toggleMenu} className="inline-block">
                 <img
                     src={props.avatar}
                     alt="avatar"
-                    className="w-20 rounded-full border-2 "
+                    className="w-12 h-12 rounded-full border-2 "
                 />
             </button>
             <div
                 id="myDropdown"
-                className={`${dropdownshow} bg-opacity-75 text-sm rounded text-center text-white font-semibold rounded-2 `}>
+                className={`${dropdownshow} bg-neutral-800 bg-opacity-75 text-sm rounded text-center text-white font-semibold rounded-2 `}>
                 <button onClick={logout}>Logout</button>
             </div>
         </div>
