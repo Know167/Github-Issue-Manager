@@ -56,9 +56,13 @@ const handler = async (req, res) => {
         return resData;
     }
 
-    const repoList = await getPaginatedData("/user/repos");
-    if (Array.isArray(repoList)) {
-        res.status(200).json(repoList);
+    try {
+        const repoList = await getPaginatedData("/user/repos");
+        if (Array.isArray(repoList)) {
+            res.status(200).json(repoList);
+        }
+    } catch (err) {
+        console.log("Error getting the repositories", err);
     }
 };
 
