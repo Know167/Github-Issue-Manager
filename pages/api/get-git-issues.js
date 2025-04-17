@@ -22,7 +22,34 @@ const handler = async (req, res) => {
 
         return res.json({ resData, sha });
     } catch (err) {
-        console.log(err);
+        console.log("Error fetching data.json", err);
+        try {
+            const issuesResponse = await octokit.request(
+                "GET /repos/{owner}/{repo}/issues",
+                {
+                    owner: owner,
+                    repo: reponame,
+                    state: "all",
+                    per_page: 100,
+                }
+            );
+            const issues = issuesResponse.data;
+            const defaultTree = {
+                id: "root",
+                title: reponame,
+                desc: "",
+                child: issues.map((issue) => ({
+                    id: issue.id,
+                    title: issue.title,
+                    desc: issue.body || "",
+                    child: [],
+                })),
+            };
+            return res.json({ resData: defaultTree, sha: null });
+        } catch (error) {
+            console.log("Error fetching issues", error);
+            return res.status(500).json({ message: "Error fetching issues" });
+        }
     }
 };
 
