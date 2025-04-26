@@ -1,49 +1,18 @@
-import { useContext, useState, useEffect } from "react";
-import { UserDataContext } from "@/store/userDataContext";
+import { useState } from "react";
 import RepoList from "@/Components/RepoList";
-import fetcher from "@/utils/fetcher";
-import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { useRepoList } from "@/hooks/useRepoList";
+
 const Repos = () => {
     const { data: session } = useSession();
     const [page, setPage] = useState(0);
-    const [reposList, setReposList] = useState([]);
-    const userDataCtx = useContext(UserDataContext);
-    const router = useRouter();
+    const { repos, loading, error } = useRepoList();
 
-    useEffect(() => {
-        const token =
-            session?.accessToken ||
-            "guest-token";
-        const guestSession = JSON.parse(localStorage?.getItem("guestSession"));
-        const asycwrapper = async () => {
-            const getrepolist = async () => {
-                const repores = await fetcher("api/get-repo-list", token);
-                if (repores.status === 200) {
-                    const repoList = await repores.json();
-                    return repoList || router.push("/repos");
-                }
-            };
-            if (token) {
-                const data = await getrepolist();
-                setReposList(data);
-                userDataCtx.handleRepoList(data);
-            }
-            router.push("/repos");
-        };
-        if (guestSession) {
-          setReposList(guestSession.repos);
-          userDataCtx.handleRepoList(guestSession.repos);
-        } else {
-            asycwrapper();
-        }
-    }, []);
-
-  let ListToBe = [];
-    if (reposList) {
-        ListToBe = reposList.reduce((acc, _, index, orig) => {
-            return !(index % 5)
-                ? acc.concat([orig.slice(index, index + 5)])
+    let ListToBe = [];
+    if (repos) {
+        ListToBe = repos.reduce((acc, _, index, orig) => {
+            return !(index % 8)
+                ? acc.concat([orig.slice(index, index + 8)])
                 : acc;
         }, []);
     }
@@ -53,17 +22,53 @@ const Repos = () => {
     };
 
     const onPrevHandler = () => {
+        if (page === 0) return;
         setPage((prevPage) => prevPage - 1);
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     return (
-        <div>
-            {ListToBe && session && <RepoList repoList={ListToBe[page]} />}
-            {page > 0 && <button onClick={onPrevHandler}>prev</button>}
-            <span> page {page + 1} </span>
-            {ListToBe && page < ListToBe.length - 1 && (
-                <button onClick={onNextHandler}>next</button>
-            )}
+        <div className="bg-neutral-900 text-neutral-100 flex flex-col h-[calc(100vh-4.2rem)]">
+            <div className="flex-grow w-full mx-auto px-4 my-6">
+                {ListToBe && session && <RepoList repoList={ListToBe[page]} />}
+            </div>
+
+            <div className="flex justify-between items-center sticky bottom-0 bg-neutral-900 p-4 shadow-lg border-t-2 border-secondary-500">
+                <button
+                    onClick={onPrevHandler}
+                    disabled={page === 0}
+                    className={`px-6 py-2 ${
+                        page === 0
+                            ? "bg-secondary-700 text-neutral-500 cursor-not-allowed"
+                            : "bg-secondary-500 hover:bg-secondary-600 text-neutral-900"
+                    } rounded-lg shadow-md transition duration-200`}>
+                    Prev
+                </button>
+
+                <span className="text-md font-semibold text-neutral-200">
+                    Page {page + 1} of {ListToBe.length}
+                </span>
+
+                <button
+                    onClick={onNextHandler}
+                    disabled={page === ListToBe.length - 1}
+                    className={`px-6 py-2 ${
+                        page === ListToBe.length - 1
+                            ? "bg-secondary-700 text-neutral-500 cursor-not-allowed"
+                            : "bg-secondary-500 hover:bg-secondary-600 text-neutral-900"
+                    } rounded-lg shadow-md transition duration-200`}>
+                    Next
+                </button>
+            </div>
         </div>
     );
 };
+
 export default Repos;
