@@ -15,8 +15,12 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "via.placeholder.com",
             },
+            {
+                protocol: "https",
+                hostname: "www.logotouse.com",
+            },
         ],
     },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;
