@@ -2,7 +2,6 @@ import { useSession, signIn } from "next-auth/react";
 import UserBio from "@/Components/UserBio";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import {
     Navbar,
     NavbarBrand,
@@ -11,10 +10,9 @@ import {
     NavbarMenuToggle,
     NavbarMenu,
     NavbarMenuItem,
-    // Link,
-    Button,
-} from "@nextui-org/react";
-import logo from "@/assets/logo.png";
+} from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import logo from "@/assets/image.png";
 import useGuestLogin from "@/utils/useGuestLogin";
 
 const Navigation = ({ children }) => {
@@ -45,25 +43,24 @@ const Navigation = ({ children }) => {
             <Navbar
                 onMenuOpenChange={setIsMenuOpen}
                 isBordered
-                className="bg-neutral-900 px-6 rounded-xl shadow-md border-b-2 border-secondary-500">
+                className="bg-neutral-900 px-6 rounded-xl shadow-md border-b-2 ">
                 {/* Mobile Hamburger + Brand */}
                 <NavbarContent>
                     <NavbarMenuToggle
                         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                         className="sm:hidden text-xl text-neutral-100"
                     />
-            <NavbarBrand>
-              <Image
-                            src={logo}
-                            alt="Logo"
-                            width={50}
-                            height={50}
-                            className="hidden sm:block"/>
+                    <NavbarBrand>
                         <Link
                             className="md:text-nowrap text-neutral-200 font-serif text-3xl font-bold vt323-xlarge items-center lg:mx-6"
                             href="/">
-                            <span className="text-secondary-500">GiT</span>
-                            <span className="text-neutral-200">Monger</span>
+                            <Image
+                                src={logo}
+                                alt="Logo"
+                                width={400}
+                                height={50}
+                                className="hidden sm:block"
+                            />
                         </Link>
                     </NavbarBrand>
                 </NavbarContent>
@@ -76,7 +73,7 @@ const Navigation = ({ children }) => {
                         ? authenticatedMenuItems.map((item) => (
                               <NavbarItem key={item.name}>
                                   <Link
-                                      className="text-neutral-100 hover:text-secondary-400 transition duration-200"
+                                      className="text-neutral-100 hover:text-primary-400 transition duration-200"
                                       href={item.href}>
                                       {item.name}
                                   </Link>
@@ -85,7 +82,7 @@ const Navigation = ({ children }) => {
                         : unauthenticatedMenuItems.map((item) => (
                               <NavbarItem key={item}>
                                   <Link
-                                      className="text-neutral-100 hover:text-secondary-400 transition duration-200"
+                                      className="text-neutral-100 hover:text-primary-400 transition duration-200"
                                       href="#">
                                       {item}
                                   </Link>
@@ -100,7 +97,7 @@ const Navigation = ({ children }) => {
                             <NavbarItem>
                                 <Button
                                     onPress={handleSignin}
-                                    className="text-neutral-900 bg-secondary-500 hover:bg-secondary-600">
+                                    className="text-100 bg-secondary-500 hover:bg-primary-500 border-2 border-accent-100 hover:border-primary-500">
                                     Login
                                 </Button>
                             </NavbarItem>
@@ -109,7 +106,7 @@ const Navigation = ({ children }) => {
                                     color="primary"
                                     variant="flat"
                                     onPress={handleGuestLogin}
-                                    className="text-neutral-900 bg-secondary-500 hover:bg-secondary-600">
+                                    className="text-neutral-900 bg-primary-500 hover:bg-primary-600">
                                     Guest Login
                                 </Button>
                             </NavbarItem>
@@ -123,12 +120,12 @@ const Navigation = ({ children }) => {
                 </NavbarContent>
 
                 {/* Mobile Menu Items */}
-                <NavbarMenu>
+                <NavbarMenu >
                     {session
                         ? authenticatedMenuItems.map((item) => (
                               <NavbarMenuItem key={item.name}>
                                   <Link
-                                      className="w-full text-neutral-100 hover:text-secondary-400 transition duration-200"
+                                      className="w-full text-neutral-100 hover:text-primary-400 transition duration-200"
                                       href={item.href}
                                       size="lg">
                                       {item.name}
@@ -147,7 +144,7 @@ const Navigation = ({ children }) => {
                                               ? "danger"
                                               : "foreground"
                                       }
-                                      className="w-full text-neutral-100 hover:text-secondary-400 transition duration-200"
+                                      className="w-full text-neutral-100 hover:text-primary-400 transition duration-200"
                                       href="#"
                                       size="lg">
                                       {item}
